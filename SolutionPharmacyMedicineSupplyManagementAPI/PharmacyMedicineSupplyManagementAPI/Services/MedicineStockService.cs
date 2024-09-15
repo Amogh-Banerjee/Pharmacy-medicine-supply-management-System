@@ -15,5 +15,15 @@ namespace PharmacyMedicineSupplyManagementAPI.Services
 		{
 			return await _repo.GetMedicineStockInfoAsync();
 		}
+
+		public async Task<List<string>> GetMedicinesByAilmentAsync(string ailment)
+		{
+			// Assuming that GetMedicineStockInfoAsync is called before this method.
+			var allMedicines = await GetMedicineStockInfoAsync();
+			return allMedicines
+				.Where(m => m.TargetAilment.Equals(ailment, StringComparison.OrdinalIgnoreCase))
+				.Select(m => m.MedName)
+				.ToList();
+		}
 	}
 }

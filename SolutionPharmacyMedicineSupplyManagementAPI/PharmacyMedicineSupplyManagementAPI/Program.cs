@@ -21,8 +21,12 @@ namespace PharmacyMedicineSupplyManagementAPI
 
 			builder.Services.AddDbContext<MedDbContext>(options =>
 				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+			
 			builder.Services.AddScoped<IMedicineStockRepo<MedicineStock>, MedicineStockRepo>();
 			builder.Services.AddScoped<IMedicineStockService<MedicineStock>, MedicineStockService>();
+			
+			builder.Services.AddScoped<IMedicalRepresentativeScheduleRepo, MedicalRepresentativeScheduleRepo>();
+			builder.Services.AddScoped<IMedicalRepresentativeScheduleService, MedicalRepresentativeScheduleService>();
 
 
 			var app = builder.Build();

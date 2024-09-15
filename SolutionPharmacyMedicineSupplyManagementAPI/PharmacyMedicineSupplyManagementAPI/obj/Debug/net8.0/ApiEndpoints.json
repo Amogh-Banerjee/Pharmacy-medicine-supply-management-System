@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "PharmacyMedicineSupplyManagementAPI.Controllers.MedicalRepresentativeScheduleController",
+    "Method": "GetRepScheduleAsync",
+    "RelativePath": "api/MedicalRepresentativeSchedule/RepSchedule",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleStartDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PharmacyMedicineSupplyManagementAPI.Controllers.MedicineStockController",
     "Method": "GetMedicineStockInfoAsync",
     "RelativePath": "api/MedicineStock/MedicineStockInformation",
