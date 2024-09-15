@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nDaZIaAKCeatFAMfANxGpL8W0i5O1zWi47SGfRj4CHQ=",
+  "Source": "PharmacyMedicineSupplyManagementAPI",
+  "BasePath": "_content/PharmacyMedicineSupplyManagementAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
