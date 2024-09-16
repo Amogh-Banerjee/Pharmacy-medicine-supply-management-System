@@ -21,12 +21,19 @@ namespace PharmacyMedicineSupplyManagementAPI.Services
 			var doctors = _repScheduleRepository.GetAllDoctors();
 			var medicalReps = _repScheduleRepository.GetAllMedicalReps();
 
+			if (!doctors.Any() || !medicalReps.Any())
+			{
+				// Handle the case where there are no doctors or medical reps
+				return new List<RepSchedule>();
+			}
+
 			var scheduleList = new List<RepSchedule>();
 			var currentDate = scheduleStartDate;
 			int repIndex = 0;
+			int maxAttempts = 5;
 
 			// Generate a 5-day schedule excluding Sundays
-			while (scheduleList.Count < 5)
+			while (scheduleList.Count < 5 && maxAttempts > 0)
 			{
 				if (currentDate.DayOfWeek == DayOfWeek.Sunday)
 				{
@@ -40,6 +47,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Services
 				if (!medicinesForAilment.Any())
 				{
 					currentDate = currentDate.AddDays(1);
+					maxAttempts--;
 					continue;
 				}
 

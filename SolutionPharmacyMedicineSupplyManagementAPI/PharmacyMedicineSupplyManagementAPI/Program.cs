@@ -24,7 +24,8 @@ namespace PharmacyMedicineSupplyManagementAPI
 			
 			builder.Services.AddScoped<IMedicineStockRepo<MedicineStock>, MedicineStockRepo>();
 			builder.Services.AddScoped<IMedicineStockService<MedicineStock>, MedicineStockService>();
-			
+
+			builder.Services.AddScoped<IFileReader, FileReader>();
 			builder.Services.AddScoped<IMedicalRepresentativeScheduleRepo, MedicalRepresentativeScheduleRepo>();
 			builder.Services.AddScoped<IMedicalRepresentativeScheduleService, MedicalRepresentativeScheduleService>();
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PharmacyMedicineSupplyManagementAPI.Models;
 using PharmacyMedicineSupplyManagementAPI.Services;
 
 namespace PharmacyMedicineSupplyManagementAPI.Controllers
@@ -18,20 +19,27 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 		[Route("RepSchedule")]
 		public async Task<IActionResult> GetRepScheduleAsync([FromQuery] DateTime scheduleStartDate)
 		{
-			var schedule = await _service.GenerateRepScheduleAsync(scheduleStartDate);
-
-			var output = schedule.Select(s => new
+			try
 			{
-				RepName = s.MedRep.MedRepName,
-				DoctorName = s.DoctorName,
-				TreatingAilment = s.TreatingAilment,
-				Medicine = s.Medicine,
-				Slot = $"{s.MeetingStartTime} to {s.MeetingEndTime}",
-				Date = s.MeetingDate.ToString("dd-MMM-yyyy"),
-				DoctorContact = s.DoctorContact
-			});
+				var schedule = await _service.GenerateRepScheduleAsync(scheduleStartDate);
 
-			return Ok(output);
+				var output = schedule.Select(s => new RepScheduleDto
+				{
+					RepName = s.MedRep.MedRepName,
+					DoctorName = s.DoctorName,
+					TreatingAilment = s.TreatingAilment,
+					Medicine = s.Medicine,
+					Slot = $"{s.MeetingStartTime} to {s.MeetingEndTime}",
+					Date = s.MeetingDate.ToString("dd-MMM-yyyy"),
+					DoctorContact = s.DoctorContact
+				});
+
+				return Ok(output);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Internal server error: {ex.Message}");
+			}
 		}
 	}
 }

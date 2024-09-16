@@ -27,12 +27,12 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 		{
 			// Arrange: Define expected result
 			var expectedStock = new List<MedicineStock>
-		{
-			new MedicineStock { MedId = 1, MedName = "MedicineA", ChemicalComposition = "Chem1, Chem2", TargetAilment = "Ailment1",
-				DateOfExpiry = new DateOnly(2024, 12, 2), NumberOfTabletsInStock = 10 },
-			new MedicineStock { MedId = 2, MedName = "MedicineB", ChemicalComposition = "Chem3, Chem4", TargetAilment = "Ailment2",
-				DateOfExpiry = new DateOnly(2024, 12, 5), NumberOfTabletsInStock = 20 }
-		};
+			{
+				new MedicineStock { MedId = 1, MedName = "MedicineA", ChemicalComposition = "Chem1, Chem2", TargetAilment = "Ailment1",
+					DateOfExpiry = new DateOnly(2024, 12, 2), NumberOfTabletsInStock = 10 },
+				new MedicineStock { MedId = 2, MedName = "MedicineB", ChemicalComposition = "Chem3, Chem4", TargetAilment = "Ailment2",
+					DateOfExpiry = new DateOnly(2024, 12, 5), NumberOfTabletsInStock = 20 }
+			};
 
 			// Mock the repository to return the expected stock
 			_mockRepository.Setup(repo => repo.GetMedicineStockInfoAsync()).ReturnsAsync(expectedStock);
@@ -56,6 +56,45 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 
 			// Assert: Check that the result is an empty list
 			Assert.IsNotNull(result);
+			Assert.AreEqual(0, result.Count);
+		}
+
+		[Test]
+		public async Task GetMedicinesByAilmentAsync_ShouldReturnFilteredMedicines()
+		{
+			// Arrange
+			var ailment = "Headache";
+			var allMedicines = new List<MedicineStock>
+			{
+				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
+				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
+			};
+			_mockRepository.Setup(repo => repo.GetMedicineStockInfoAsync()).ReturnsAsync(allMedicines);
+
+			// Act
+			var result = await _myService.GetMedicinesByAilmentAsync(ailment);
+
+			// Assert
+			Assert.AreEqual(1, result.Count);
+			Assert.Contains("Aspirin", result);
+		}
+
+		[Test]
+		public async Task GetMedicinesByAilmentAsync_ShouldReturnEmptyList_WhenNoMedicinesMatchAilment()
+		{
+			// Arrange
+			var ailment = "NonexistentAilment";
+			var allMedicines = new List<MedicineStock>
+			{
+				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
+				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
+			};
+			_mockRepository.Setup(repo => repo.GetMedicineStockInfoAsync()).ReturnsAsync(allMedicines);
+
+			// Act
+			var result = await _myService.GetMedicinesByAilmentAsync(ailment);
+
+			// Assert
 			Assert.AreEqual(0, result.Count);
 		}
 	}
