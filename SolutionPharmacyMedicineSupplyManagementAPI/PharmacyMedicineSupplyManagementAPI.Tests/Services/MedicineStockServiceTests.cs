@@ -57,45 +57,6 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 			// Assert: Check that the result is an empty list
 			Assert.IsNotNull(result);
 			Assert.AreEqual(0, result.Count);
-		}
-
-		[Test]
-		public async Task GetMedicinesByAilmentAsync_ShouldReturnFilteredMedicines()
-		{
-			// Arrange
-			var ailment = "Headache";
-			var allMedicines = new List<MedicineStock>
-			{
-				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
-				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
-			};
-			_mockRepository.Setup(repo => repo.GetMedicineStockInfoAsync()).ReturnsAsync(allMedicines);
-
-			// Act
-			var result = await _myService.GetMedicinesByAilmentAsync(ailment);
-
-			// Assert
-			Assert.AreEqual(1, result.Count);
-			Assert.Contains("Aspirin", result);
-		}
-
-		[Test]
-		public async Task GetMedicinesByAilmentAsync_ShouldReturnEmptyList_WhenNoMedicinesMatchAilment()
-		{
-			// Arrange
-			var ailment = "NonexistentAilment";
-			var allMedicines = new List<MedicineStock>
-			{
-				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
-				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
-			};
-			_mockRepository.Setup(repo => repo.GetMedicineStockInfoAsync()).ReturnsAsync(allMedicines);
-
-			// Act
-			var result = await _myService.GetMedicinesByAilmentAsync(ailment);
-
-			// Assert
-			Assert.AreEqual(0, result.Count);
-		}
+		}		
 	}
 }

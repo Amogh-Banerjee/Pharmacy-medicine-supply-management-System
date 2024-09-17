@@ -29,7 +29,9 @@ namespace PharmacyMedicineSupplyManagementAPI
 			builder.Services.AddScoped<IMedicalRepresentativeScheduleRepo, MedicalRepresentativeScheduleRepo>();
 			builder.Services.AddScoped<IMedicalRepresentativeScheduleService, MedicalRepresentativeScheduleService>();
 
-
+			builder.Services.AddScoped<IPharmacyMedicineSupplyRepo, PharmacyMedicineSupplyRepo>();
+			builder.Services.AddScoped<IPharmacyMedicineSupplyService, PharmacyMedicineSupplyService>();
+			
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyMedicineSupplyManagementAPI.Models;
 using PharmacyMedicineSupplyManagementAPI.Services;
@@ -15,13 +16,14 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 			_service = service;
 		}
 
-		[HttpGet]
+		[HttpPost]
 		[Route("RepSchedule")]
-		public async Task<IActionResult> GetRepScheduleAsync([FromQuery] DateTime scheduleStartDate)
-		{
+		public async Task<IActionResult> GetRepScheduleAsync([FromQuery] DateTime scheduleStartDate, [FromBody] List<MedicineStock> allMedicines)
+		{			
+			
 			try
 			{
-				var schedule = await _service.GenerateRepScheduleAsync(scheduleStartDate);
+				var schedule = await _service.GenerateRepScheduleAsync(scheduleStartDate, allMedicines);
 
 				var output = schedule.Select(s => new RepScheduleDto
 				{

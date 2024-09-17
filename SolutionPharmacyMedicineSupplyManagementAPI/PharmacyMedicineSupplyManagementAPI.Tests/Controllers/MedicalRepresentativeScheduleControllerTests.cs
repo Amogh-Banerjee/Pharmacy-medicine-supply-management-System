@@ -43,11 +43,11 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 				}
 			};
 
-			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate))
+			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()))
 						.ReturnsAsync(mockSchedule);
 
 			// Act
-			var result = await _controller.GetRepScheduleAsync(scheduleStartDate) as OkObjectResult;
+			var result = await _controller.GetRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()) as OkObjectResult;
 
 			// Assert
 			Assert.IsNotNull(result, "Result should not be null");
@@ -75,11 +75,11 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 		{
 			// Arrange
 			var scheduleStartDate = new DateTime(2024, 9, 16);
-			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate))
+			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()))
 						.ReturnsAsync(new List<RepSchedule>());
 
 			// Act
-			var result = await _controller.GetRepScheduleAsync(scheduleStartDate) as OkObjectResult;
+			var result = await _controller.GetRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()) as OkObjectResult;
 
 			// Assert
 			Assert.IsNotNull(result);
@@ -95,11 +95,11 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 		{
 			// Arrange
 			var scheduleStartDate = new DateTime(2024, 9, 16);
-			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate))
+			_mockService.Setup(service => service.GenerateRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()))
 						.ThrowsAsync(new Exception("Test exception"));
 
 			// Act
-			var result = _controller.GetRepScheduleAsync(scheduleStartDate).Result as ObjectResult;
+			var result = _controller.GetRepScheduleAsync(scheduleStartDate, new List<MedicineStock>()).Result as ObjectResult;
 
 			// Assert
 			Assert.IsNotNull(result);

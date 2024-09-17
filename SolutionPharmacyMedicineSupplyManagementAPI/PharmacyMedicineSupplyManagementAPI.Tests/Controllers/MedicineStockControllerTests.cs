@@ -28,12 +28,12 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 		{
 			// Arrange: Define the expected result
 			var expectedStock = new List<MedicineStock>
-		{
-			new MedicineStock { MedId = 1, MedName = "MedicineA", ChemicalComposition = "Chem1, Chem2", 
-				TargetAilment = "Ailment1",	DateOfExpiry = new DateOnly(2024, 12, 2), NumberOfTabletsInStock = 10 },
-			new MedicineStock { MedId = 2, MedName = "MedicineB", ChemicalComposition = "Chem3, Chem4", 
-				TargetAilment = "Ailment2", DateOfExpiry = new DateOnly(2024, 12, 5), NumberOfTabletsInStock = 20 }
-		};
+			{
+				new MedicineStock { MedId = 1, MedName = "MedicineA", ChemicalComposition = "Chem1, Chem2", 
+					TargetAilment = "Ailment1",	DateOfExpiry = new DateOnly(2024, 12, 2), NumberOfTabletsInStock = 10 },
+				new MedicineStock { MedId = 2, MedName = "MedicineB", ChemicalComposition = "Chem3, Chem4", 
+					TargetAilment = "Ailment2", DateOfExpiry = new DateOnly(2024, 12, 5), NumberOfTabletsInStock = 20 }
+			};
 
 			// Mock the service to return the expected stock
 			_mockService.Setup(service => service.GetMedicineStockInfoAsync()).ReturnsAsync(expectedStock);

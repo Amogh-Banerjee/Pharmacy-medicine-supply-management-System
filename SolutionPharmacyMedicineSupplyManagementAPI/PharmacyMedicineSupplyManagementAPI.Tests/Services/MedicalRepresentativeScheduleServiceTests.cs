@@ -11,17 +11,52 @@ using PharmacyMedicineSupplyManagementAPI.Services;
 namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 {
 	internal class MedicalRepresentativeScheduleServiceTests
-	{
-		private Mock<IMedicineStockService<MedicineStock>> _mockMedStockService;
+	{		
 		private Mock<IMedicalRepresentativeScheduleRepo> _mockRepScheduleRepo;
 		private MedicalRepresentativeScheduleService _service;
 
 		[SetUp]
 		public void SetUp()
-		{
-			_mockMedStockService = new Mock<IMedicineStockService<MedicineStock>>();
+		{			
 			_mockRepScheduleRepo = new Mock<IMedicalRepresentativeScheduleRepo>();
-			_service = new MedicalRepresentativeScheduleService(_mockMedStockService.Object, _mockRepScheduleRepo.Object);
+			_service = new MedicalRepresentativeScheduleService(_mockRepScheduleRepo.Object);
+		}
+
+		[Test]
+		public async Task GetMedicinesByAilmentAsync_ShouldReturnFilteredMedicines()
+		{
+			// Arrange
+			var ailment = "Headache";
+			var allMedicines = new List<MedicineStock>
+			{
+				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
+				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
+			};			
+
+			// Act
+			var result = await _service.GetMedicinesByAilmentAsync(ailment, allMedicines);
+
+			// Assert
+			Assert.AreEqual(1, result.Count);
+			Assert.Contains("Aspirin", result);
+		}
+
+		[Test]
+		public async Task GetMedicinesByAilmentAsync_ShouldReturnEmptyList_WhenNoMedicinesMatchAilment()
+		{
+			// Arrange
+			var ailment = "NonexistentAilment";
+			var allMedicines = new List<MedicineStock>
+			{
+				new MedicineStock { MedName = "Aspirin", TargetAilment = "Headache" },
+				new MedicineStock { MedName = "Paracetamol", TargetAilment = "Fever" }
+			};			
+
+			// Act
+			var result = await _service.GetMedicinesByAilmentAsync(ailment, allMedicines);
+
+			// Assert
+			Assert.AreEqual(0, result.Count);
 		}
 
 		[Test]
@@ -46,11 +81,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 			};
 
 			_mockRepScheduleRepo.Setup(repo => repo.GetAllDoctors()).Returns(doctors);
-			_mockRepScheduleRepo.Setup(repo => repo.GetAllMedicalReps()).Returns(medicalReps);
-			_mockMedStockService.Setup(service => service.GetMedicinesByAilmentAsync("Orthopaedics"))
-								.ReturnsAsync(new List<string> { "Orthoherb" });
-			_mockMedStockService.Setup(service => service.GetMedicinesByAilmentAsync("General"))
-								.ReturnsAsync(new List<string> { "Gaviscon" });
+			_mockRepScheduleRepo.Setup(repo => repo.GetAllMedicalReps()).Returns(medicalReps);			
 
 			var scheduleList = new List<RepSchedule>();
 
@@ -58,7 +89,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 								.Callback<RepSchedule>(scheduleList.Add);
 
 			// Act
-			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate);
+			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate, medicines);
 
 			// Assert
 			Assert.AreEqual(5, result.Count);
@@ -90,9 +121,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 			};
 
 			_mockRepScheduleRepo.Setup(repo => repo.GetAllDoctors()).Returns(doctors);
-			_mockRepScheduleRepo.Setup(repo => repo.GetAllMedicalReps()).Returns(medicalReps);
-			_mockMedStockService.Setup(service => service.GetMedicinesByAilmentAsync("Orthopaedics"))
-								.ReturnsAsync(new List<string> { "Orthoherb" });
+			_mockRepScheduleRepo.Setup(repo => repo.GetAllMedicalReps()).Returns(medicalReps);			
 
 			var scheduleList = new List<RepSchedule>();
 
@@ -100,7 +129,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 								.Callback<RepSchedule>(scheduleList.Add);
 
 			// Act
-			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate);
+			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate, medicines);
 
 			// Assert
 			Assert.AreEqual(5, result.Count);
@@ -129,16 +158,14 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 
 			_mockRepScheduleRepo.Setup(repo => repo.GetAllDoctors()).Returns(doctors);
 			_mockRepScheduleRepo.Setup(repo => repo.GetAllMedicalReps()).Returns(medicalReps);
-			_mockMedStockService.Setup(service => service.GetMedicinesByAilmentAsync("Orthopaedics"))
-								.ReturnsAsync(new List<string>());
-
+			
 			var scheduleList = new List<RepSchedule>();
 
 			_mockRepScheduleRepo.Setup(repo => repo.AddSchedule(It.IsAny<RepSchedule>()))
 								.Callback<RepSchedule>(scheduleList.Add);
 
 			// Act
-			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate);
+			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate, new List<MedicineStock>());
 
 			// Assert
 			Assert.AreEqual(0, result.Count); // No schedule should be created
@@ -158,7 +185,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Services
 								.Callback<RepSchedule>(scheduleList.Add);
 
 			// Act
-			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate);
+			var result = await _service.GenerateRepScheduleAsync(scheduleStartDate, new List<MedicineStock>());
 
 			// Assert
 			Assert.AreEqual(0, result.Count); // No schedule should be created

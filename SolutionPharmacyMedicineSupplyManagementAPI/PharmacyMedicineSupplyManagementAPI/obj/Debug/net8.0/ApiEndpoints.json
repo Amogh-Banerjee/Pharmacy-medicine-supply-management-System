@@ -3,7 +3,7 @@
     "ContainingType": "PharmacyMedicineSupplyManagementAPI.Controllers.MedicalRepresentativeScheduleController",
     "Method": "GetRepScheduleAsync",
     "RelativePath": "api/MedicalRepresentativeSchedule/RepSchedule",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -11,6 +11,11 @@
         "Name": "scheduleStartDate",
         "Type": "System.DateTime",
         "IsRequired": false
+      },
+      {
+        "Name": "allMedicines",
+        "Type": "System.Collections.Generic.List\u00601[[PharmacyMedicineSupplyManagementAPI.Models.MedicineStock, PharmacyMedicineSupplyManagementAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -24,5 +29,31 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PharmacyMedicineSupplyManagementAPI.Controllers.PharmacyMedicineSupplyController",
+    "Method": "GetPharmacyMedicineSupply",
+    "RelativePath": "api/PharmacyMedicineSupply/PharmacySupply",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "demandsAndAllStock",
+        "Type": "PharmacyMedicineSupplyManagementAPI.Models.DemandsAndAllStockDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[PharmacyMedicineSupplyManagementAPI.Models.PharmacyMedicineSupplyDto, PharmacyMedicineSupplyManagementAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -1,0 +1,42 @@
+{
+  "demands": [
+    {
+      "medId": 14,
+      "demandCount": 70
+    },
+    {
+      "medId": 15,
+      "demandCount": 154
+    },
+    {
+      "medId": 16,
+      "demandCount": 60
+    }
+  ],
+  "allStock": [
+    {
+      "medId": 14,
+      "medName": "med1",
+      "chemicalComposition": "Cedrus deodara, Vitex negundo, Boswellia serrata, Zingiber officinale, Withania somnifera, Pongamia pinnata",
+      "targetAilment": "Orthopaedics",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 100
+    },
+    {
+      "medId": 15,
+      "medName": "med2",
+      "chemicalComposition": "Cedrus deodara, Vitex negundo, Boswellia serrata, Zingiber officinale, Withania somnifera, Pongamia pinnata",
+      "targetAilment": "Orthopaedics",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 200
+    },
+    {
+      "medId": 16,
+      "medName": "med3",
+      "chemicalComposition": "Cedrus deodara, Vitex negundo, Boswellia serrata, Zingiber officinale, Withania somnifera, Pongamia pinnata",
+      "targetAilment": "Orthopaedics",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 54
+    }
+  ]
+}

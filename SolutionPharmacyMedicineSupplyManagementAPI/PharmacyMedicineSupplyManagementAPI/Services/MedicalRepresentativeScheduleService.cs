@@ -5,17 +5,21 @@ namespace PharmacyMedicineSupplyManagementAPI.Services
 {
 	public class MedicalRepresentativeScheduleService: IMedicalRepresentativeScheduleService
 	{
-		private readonly IMedicalRepresentativeScheduleRepo _repScheduleRepository;
-		private readonly IMedicineStockService<MedicineStock> _medStockService;
-		public MedicalRepresentativeScheduleService(IMedicineStockService<MedicineStock> medStockService,
-			IMedicalRepresentativeScheduleRepo repScheduleRepository)
-		{
-
-			_medStockService = medStockService;
+		private readonly IMedicalRepresentativeScheduleRepo _repScheduleRepository;		
+		public MedicalRepresentativeScheduleService(IMedicalRepresentativeScheduleRepo repScheduleRepository)
+		{			
 			_repScheduleRepository = repScheduleRepository;
 		}
 
-		public async Task<List<RepSchedule>> GenerateRepScheduleAsync(DateTime scheduleStartDate)
+		public async Task<List<string>> GetMedicinesByAilmentAsync(string ailment, List<MedicineStock> allMedicines)
+		{			
+			return allMedicines
+				.Where(m => m.TargetAilment.Equals(ailment, StringComparison.OrdinalIgnoreCase))
+				.Select(m => m.MedName)
+				.ToList();
+		}
+
+		public async Task<List<RepSchedule>> GenerateRepScheduleAsync(DateTime scheduleStartDate, List<MedicineStock> allMedicines)
 		{
 			// Load data
 			var doctors = _repScheduleRepository.GetAllDoctors();
@@ -42,7 +46,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Services
 				}
 
 				var doctor = doctors[scheduleList.Count % doctors.Count];
-				var medicinesForAilment = await _medStockService.GetMedicinesByAilmentAsync(doctor.TreatingAilment);
+				var medicinesForAilment = await GetMedicinesByAilmentAsync(doctor.TreatingAilment, allMedicines);
 
 				if (!medicinesForAilment.Any())
 				{
