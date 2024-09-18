@@ -27,7 +27,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 		public async Task GetRepScheduleAsync_ShouldReturnOkResult_WithSchedule()
 		{
 			// Arrange
-			var scheduleStartDate = new DateTime(2024, 9, 16);
+			var scheduleStartDate = new DateTime(2024, 9, 18);
 			var mockSchedule = new List<RepSchedule>
 			{
 				new RepSchedule
@@ -65,7 +65,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Tests.Controllers
 			Assert.AreEqual("Orthopaedics", firstItem.TreatingAilment);
 			Assert.AreEqual("Orthoherb, Cholecalciferol", firstItem.Medicine);
 			Assert.AreEqual("01:00 PM to 02:00 PM", firstItem.Slot);
-			Assert.AreEqual("16-Sep-2024", firstItem.Date);
+			Assert.AreEqual("18-Sep-2024", firstItem.Date);
 			Assert.AreEqual("9884122113", firstItem.DoctorContact);
 
 		}

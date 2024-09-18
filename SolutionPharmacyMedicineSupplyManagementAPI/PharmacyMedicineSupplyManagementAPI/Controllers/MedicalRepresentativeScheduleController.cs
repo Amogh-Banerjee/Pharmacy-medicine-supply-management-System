@@ -19,8 +19,18 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 		[HttpPost]
 		[Route("RepSchedule")]
 		public async Task<IActionResult> GetRepScheduleAsync([FromQuery] DateTime scheduleStartDate, [FromBody] List<MedicineStock> allMedicines)
-		{			
-			
+		{
+			if (scheduleStartDate == DateTime.MinValue)
+			{
+				return BadRequest("Start date is required.");
+			}
+
+			// Ensure the date is not in the past
+			if (scheduleStartDate < DateTime.Today)
+			{
+				return BadRequest("Start date cannot be in the past.");
+			}
+
 			try
 			{
 				var schedule = await _service.GenerateRepScheduleAsync(scheduleStartDate, allMedicines);
