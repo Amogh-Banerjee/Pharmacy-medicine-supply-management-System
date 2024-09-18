@@ -21,17 +21,22 @@ namespace PharmacyMedicineSupplyManagementAPI.Repositories
 		{
 			try
 			{
-				// Detach the MedicineStock to prevent EF from trying to insert it
-				_context.Entry(supply.Med).State = EntityState.Unchanged;
+				DetachMedicineStock(supply.Med);
 
-				_context.PharmacyMedicineSupplies.Add(supply);				
+				_context.PharmacyMedicineSupplies.Add(supply);
 				_context.SaveChanges();
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				Console.WriteLine($"Error: {ex.Message}");
 				throw;
 			}
+		}
+
+		public virtual void DetachMedicineStock(MedicineStock med)
+		{
+			// Detach the MedicineStock to prevent EF from trying to insert it
+			_context.Entry(med).State = EntityState.Unchanged;
 		}
 
 		public void AddMedicineDemand(MedicineDemand demand)

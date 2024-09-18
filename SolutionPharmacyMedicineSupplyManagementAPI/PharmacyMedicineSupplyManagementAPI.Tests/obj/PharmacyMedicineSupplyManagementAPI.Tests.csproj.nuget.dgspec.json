@@ -62,6 +62,10 @@
               "target": "Package",
               "version": "[17.8.0, )"
             },
+            "Moq.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1.2, )"
+            },
             "NUnit": {
               "target": "Package",
               "version": "[3.14.0, )"

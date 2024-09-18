@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PharmacyMedicineSupplyManagementAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb09f8548efa5a2640dadb464e93ccbd550ac602")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d2a7e834f6781e2291ced238527ef211950e08cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("PharmacyMedicineSupplyManagementAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PharmacyMedicineSupplyManagementAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
