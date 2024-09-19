@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyMedicineSupplyManagementAPI.Models;
@@ -17,6 +18,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 			_pharmacyMedicineSupplyService = pharmacyMedicineSupplyService;
 		}
 
+		[Authorize]
 		[HttpPost("PharmacySupply")]
 		public async Task<ActionResult<List<PharmacyMedicineSupplyDto>>> GetPharmacyMedicineSupply([FromBody] DemandsAndAllStockDto demandsAndAllStock)
 		{

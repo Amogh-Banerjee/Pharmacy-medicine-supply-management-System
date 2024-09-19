@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyMedicineSupplyManagementAPI.Models;
@@ -16,6 +17,7 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 			_service = service;
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("RepSchedule")]
 		public async Task<IActionResult> GetRepScheduleAsync([FromQuery] DateTime scheduleStartDate, [FromBody] List<MedicineStock> allMedicines)

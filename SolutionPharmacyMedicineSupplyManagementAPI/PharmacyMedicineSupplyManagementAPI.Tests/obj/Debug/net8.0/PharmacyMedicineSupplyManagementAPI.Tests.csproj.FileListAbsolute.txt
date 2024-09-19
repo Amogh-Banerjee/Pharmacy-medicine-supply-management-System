@@ -154,3 +154,4 @@ D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedic
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI.Tests\bin\Debug\net8.0\CsvHelper.dll
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI.Tests\obj\Debug\net8.0\PharmacyMedicineSupplyManagementAPI.Tests.sourcelink.json
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI.Tests\bin\Debug\net8.0\Moq.EntityFrameworkCore.dll
+D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI.Tests\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

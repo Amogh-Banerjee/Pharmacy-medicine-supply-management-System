@@ -138,3 +138,4 @@ D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedic
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI\bin\Debug\net8.0\Moq.dll
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI\bin\Debug\net8.0\CsvHelper.dll
 D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI\obj\Debug\net8.0\PharmacyMedicineSupplyManagementAPI.sourcelink.json
+D:\Wipro\Final Project\SolutionPharmacyMedicineSupplyManagementAPI\PharmacyMedicineSupplyManagementAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
