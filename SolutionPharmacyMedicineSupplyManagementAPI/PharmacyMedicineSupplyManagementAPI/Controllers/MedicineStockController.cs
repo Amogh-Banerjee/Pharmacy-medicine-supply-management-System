@@ -18,8 +18,14 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 		[HttpGet("MedicineStockInformation")]
 		public async Task<IActionResult> GetMedicineStockInfoAsync()
 		{
-			var medicines = await _service.GetMedicineStockInfoAsync();
-			return Ok(medicines);
+			try
+			{
+				var medicines = await _service.GetMedicineStockInfoAsync();
+				return Ok(medicines);
+			}
+			catch (Exception ex) {
+				return StatusCode(500, $"Internal server error: {ex.Message}");
+			}
 		}
 	}
 }

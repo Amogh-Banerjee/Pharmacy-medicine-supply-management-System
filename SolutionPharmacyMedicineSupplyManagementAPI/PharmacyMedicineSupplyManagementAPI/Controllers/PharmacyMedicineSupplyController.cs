@@ -20,23 +20,38 @@ namespace PharmacyMedicineSupplyManagementAPI.Controllers
 		[HttpPost("PharmacySupply")]
 		public async Task<ActionResult<List<PharmacyMedicineSupplyDto>>> GetPharmacyMedicineSupply([FromBody] DemandsAndAllStockDto demandsAndAllStock)
 		{
-			if (demandsAndAllStock.demands == null || demandsAndAllStock.demands.Count == 0)
-			{                
-                return BadRequest("Demand list cannot be null or empty.");
+			try
+			{
+				if (demandsAndAllStock.demands == null || demandsAndAllStock.demands.Count == 0)
+				{
+					return BadRequest("Demand list cannot be null or empty.");
+				}
+
+				var result = await _pharmacyMedicineSupplyService.GetPharmacyMedicineSupplyAsync(demandsAndAllStock.demands, demandsAndAllStock.allStock);
+
+				var output = result.Select(supply => new PharmacyMedicineSupplyDto
+				{
+					PharmacyId = supply.PharmacyId,
+					PharmacyName = supply.Pharmacy.PharmacyName,
+					MedId = supply.MedId,
+					MedName = supply.Med.MedName,
+					SupplyCount = supply.SupplyCount
+				});
+
+				return Ok(output);
 			}
-
-			var result = await _pharmacyMedicineSupplyService.GetPharmacyMedicineSupplyAsync(demandsAndAllStock.demands, demandsAndAllStock.allStock);
-
-			var output = result.Select(supply => new PharmacyMedicineSupplyDto
+			catch (ArgumentException ex)
 			{				
-				PharmacyId = supply.PharmacyId,
-				PharmacyName = supply.Pharmacy.PharmacyName,
-				MedId = supply.MedId,
-				MedName = supply.Med.MedName,
-				SupplyCount = supply.SupplyCount
-			});
-
-			return Ok(output);
+				return BadRequest(ex.Message);
+			}
+			catch (InvalidOperationException ex)
+			{				
+				return Conflict(ex.Message);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, $"Internal server error: {ex.Message}");
+			}
 		}
 	}
 }
