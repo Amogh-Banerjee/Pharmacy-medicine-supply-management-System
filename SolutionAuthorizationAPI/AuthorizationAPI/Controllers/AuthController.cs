@@ -22,6 +22,11 @@ namespace AuthorizationAPI.Controllers
 		[HttpPost("login")]
 		public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
 			var user = await _userService.AuthenticateUserAsync(request.Username, request.Password);
 			if (user == null)
 				return Unauthorized();
@@ -33,6 +38,11 @@ namespace AuthorizationAPI.Controllers
 		[HttpPost("register")]
 		public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
 		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
 			var user = new User
 			{
 				Username = request.Username,

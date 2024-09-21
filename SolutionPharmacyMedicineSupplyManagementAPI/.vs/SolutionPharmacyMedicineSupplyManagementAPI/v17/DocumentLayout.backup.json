@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Wipro\\Final Project\\SolutionPharmacyMedicineSupplyManagementAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6CFAA54B-D015-4DC4-8F91-74DB3CD8C37B}|PharmacyMedicineSupplyManagementAPI.Tests\\PharmacyMedicineSupplyManagementAPI.Tests.csproj|d:\\wipro\\final project\\solutionpharmacymedicinesupplymanagementapi\\pharmacymedicinesupplymanagementapi.tests\\controllers\\pharmacymedicinesupplycontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6CFAA54B-D015-4DC4-8F91-74DB3CD8C37B}|PharmacyMedicineSupplyManagementAPI.Tests\\PharmacyMedicineSupplyManagementAPI.Tests.csproj|solutionrelative:pharmacymedicinesupplymanagementapi.tests\\controllers\\pharmacymedicinesupplycontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAF780FF-B11C-4120-AD34-B3D10333FFD8}|PharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI.csproj|d:\\wipro\\final project\\solutionpharmacymedicinesupplymanagementapi\\pharmacymedicinesupplymanagementapi\\controllers\\medicalrepresentativeschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF780FF-B11C-4120-AD34-B3D10333FFD8}|PharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI.csproj|solutionrelative:pharmacymedicinesupplymanagementapi\\controllers\\medicalrepresentativeschedulecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,19 +19,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PharmacyMedicineSupplyControllerTests.cs",
-              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionPharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI.Tests\\Controllers\\PharmacyMedicineSupplyControllerTests.cs",
-              "RelativeDocumentMoniker": "PharmacyMedicineSupplyManagementAPI.Tests\\Controllers\\PharmacyMedicineSupplyControllerTests.cs",
-              "ToolTip": "D:\\Wipro\\Final Project\\SolutionPharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI.Tests\\Controllers\\PharmacyMedicineSupplyControllerTests.cs",
-              "RelativeToolTip": "PharmacyMedicineSupplyManagementAPI.Tests\\Controllers\\PharmacyMedicineSupplyControllerTests.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwE4AAAADAAAAAAAAAA==",
+              "Title": "MedicalRepresentativeScheduleController.cs",
+              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionPharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI\\Controllers\\MedicalRepresentativeScheduleController.cs",
+              "RelativeDocumentMoniker": "PharmacyMedicineSupplyManagementAPI\\Controllers\\MedicalRepresentativeScheduleController.cs",
+              "ToolTip": "D:\\Wipro\\Final Project\\SolutionPharmacyMedicineSupplyManagementAPI\\PharmacyMedicineSupplyManagementAPI\\Controllers\\MedicalRepresentativeScheduleController.cs",
+              "RelativeToolTip": "PharmacyMedicineSupplyManagementAPI\\Controllers\\MedicalRepresentativeScheduleController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T14:12:14.816Z",
+              "WhenOpened": "2024-09-20T13:25:16.738Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             }
           ]
         }

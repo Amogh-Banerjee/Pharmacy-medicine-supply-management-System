@@ -1,0 +1,50 @@
+[
+  {
+    "medId": 1,
+    "medName": "Med1",
+    "chemicalComposition": "ChemA, ChemB",
+    "targetAilment": "Orthopaedics",
+    "dateOfExpiry": "2025-12-31",
+    "numberOfTabletsInStock": 100  
+  },
+  {
+    "medId": 2,
+    "medName": "Med2",
+    "chemicalComposition": "ChemC",
+    "targetAilment": "General",
+    "dateOfExpiry": "2025-06-15",
+    "numberOfTabletsInStock": 200  
+  },
+  {
+    "medId": 3,
+    "medName": "Med3",
+    "chemicalComposition": "ChemD",
+    "targetAilment": "General",
+    "dateOfExpiry": "2025-06-15",
+    "numberOfTabletsInStock": 200  
+  },
+  {
+    "medId": 4,
+    "medName": "Med4",
+    "chemicalComposition": "ChemE, ChemF, ChemG",
+    "targetAilment": "Orthopaedics",
+    "dateOfExpiry": "2025-12-31",
+    "numberOfTabletsInStock": 100  
+  },
+  {
+    "medId": 5,
+    "medName": "Med5",
+    "chemicalComposition": "ChemH, ChemI",
+    "targetAilment": "Gynaecology",
+    "dateOfExpiry": "2025-12-31",
+    "numberOfTabletsInStock": 100  
+  },
+  {
+    "medId": 6,
+    "medName": "Med6",
+    "chemicalComposition": "ChemJ, ChemK, ChemL, ChemM",
+    "targetAilment": "Gynaecology",
+    "dateOfExpiry": "2025-12-31",
+    "numberOfTabletsInStock": 100  
+  }
+]

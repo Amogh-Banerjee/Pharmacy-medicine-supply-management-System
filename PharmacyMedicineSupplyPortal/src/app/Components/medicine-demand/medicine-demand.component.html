@@ -1,0 +1,31 @@
+<div class="container my-4">
+    <h2 class="text-center mb-4">Enter Medicine Demand</h2>
+    <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Medicine Name</th>
+                    <th scope="col">Available Stock</th>
+                    <th scope="col">Enter Demand</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicine of medicines">
+                    <td>{{ medicine.medName }}</td>
+                    <td>{{ medicine.numberOfTabletsInStock }}</td>
+                    <td>
+                        <input type="text" class="form-control" formControlName="demand_{{ medicine.medId }}"
+                            placeholder="Enter demand" pattern="^[1-9][0-9]*$"  
+                            (input)="onInputChange(medicine.medId)" 
+                            maxlength="6">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-secondary btn-lg">Generate Pharmacy Supply Details</button>
+        </div>
+    </form>
+</div>

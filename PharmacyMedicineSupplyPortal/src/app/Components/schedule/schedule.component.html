@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <h2 class="text-center">Schedule Manager</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #scheduleForm="ngForm">
+            <div class="mb-3">
+              <label for="startDate" class="form-label">Schedule Start Date</label>
+              <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate"
+                [min]="minDate" (keydown)="preventTyping($event)" required />
+              <div
+                *ngIf="scheduleForm.controls['startDate']?.invalid && (scheduleForm.controls['startDate']?.touched || scheduleForm.submitted)"
+                class="text-danger">
+                <div *ngIf="scheduleForm.controls['startDate']?.errors?.['required']">Start date is required.</div>
+                <div *ngIf="scheduleForm.controls['startDate']?.errors?.['min']">Start date cannot be in the past.</div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success w-100" [disabled]="scheduleForm.invalid">Show Schedule</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="schedules.length > 0" class="mt-4">
+    <h3 class="text-center">Schedule</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Rep Name</th>
+          <th>Doctor Name</th>
+          <th>Ailment</th>
+          <th>Medicine</th>
+          <th>Slot</th>
+          <th>Date</th>
+          <th>Doctor Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of schedules">
+          <td>{{ item.repName }}</td>
+          <td>{{ item.doctorName }}</td>
+          <td>{{ item.treatingAilment }}</td>
+          <td>{{ item.medicine }}</td>
+          <td>{{ item.slot }}</td>
+          <td>{{ item.date }}</td>
+          <td>{{ item.doctorContact }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -37,6 +37,17 @@ namespace AuthorizationAPI
 			builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 			builder.Services.AddSingleton<JwtTokenGenerator>(); // Register JwtTokenGenerator
 
+			// Add CORS policy
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("AllowAngularApp",
+					policy => policy.WithOrigins("http://localhost:4200")  
+									.AllowAnyHeader()
+									.AllowAnyMethod()
+									.AllowCredentials());
+			});
+
+
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
@@ -45,6 +56,9 @@ namespace AuthorizationAPI
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+
+			// Use the CORS policy
+			app.UseCors("AllowAngularApp");
 
 			app.UseHttpsRedirection();
 

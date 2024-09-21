@@ -100,6 +100,15 @@ namespace PharmacyMedicineSupplyManagementAPI
 
 			builder.Services.AddAuthorization();
 
+			// Add CORS policy
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("AllowAngularApp",
+					policy => policy.WithOrigins("http://localhost:4200")  
+									.AllowAnyHeader()
+									.AllowAnyMethod()
+									.AllowCredentials());
+			});
 
 			var app = builder.Build();
 
@@ -109,6 +118,9 @@ namespace PharmacyMedicineSupplyManagementAPI
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+
+			// Use the CORS policy
+			app.UseCors("AllowAngularApp");
 
 			app.UseHttpsRedirection();
 

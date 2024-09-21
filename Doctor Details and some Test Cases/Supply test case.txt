@@ -1,0 +1,42 @@
+{
+  "demands": [
+    {
+      "medId": 1,
+      "demandCount": 70
+    },
+    {
+      "medId": 2,
+      "demandCount": 154
+    },
+    {
+      "medId": 3,
+      "demandCount": 60
+    }
+  ],
+  "allStock": [
+    {
+      "medId": 1,
+      "medName": "med1",
+      "chemicalComposition": "ChemA, ChemB, ChemC",
+      "targetAilment": "Ailment1",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 100
+    },
+    {
+      "medId": 2,
+      "medName": "med2",
+      "chemicalComposition": "ChemD, ChemE",
+      "targetAilment": "Ailment2",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 200
+    },
+    {
+      "medId": 3,
+      "medName": "med3",
+      "chemicalComposition": "ChemF",
+      "targetAilment": "Ailment3",
+      "dateOfExpiry": "2025-12-31",
+      "numberOfTabletsInStock": 54
+    }
+  ]
+}
