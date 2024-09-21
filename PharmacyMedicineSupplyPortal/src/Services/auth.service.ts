@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { getUsernameFromToken } from '../Helpers/jwt-helper'
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,9 @@ export class AuthService {
   private usernameSubject = new BehaviorSubject<string | null>(this.getUsername());
   username$ = this.usernameSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private expirationTimeout: any;
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
@@ -33,6 +37,9 @@ export class AuthService {
 
   loginEmit(token: string): void {
     localStorage.setItem('token', token);
+
+    this.startTokenExpirationTimer(token);  // Start the expiration timer
+
     const username = getUsernameFromToken(token);
     if (username) {
       this.usernameSubject.next(username); // Emit the username
@@ -42,8 +49,13 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+
+    clearTimeout(this.expirationTimeout);  // Clear any existing timeout
+
     this.usernameSubject.next(null); // Clear the username
     this.authStatus.next(false); // Emit logout event
+
+    this.router.navigate(['/login']);    
   }
 
   // Helper method to get the username from localStorage
@@ -53,5 +65,26 @@ export class AuthService {
       return getUsernameFromToken(token);
     }
     return null;
+  }
+
+  private getTokenExpirationDate(token: string): Date | null {
+    const decoded: any = jwtDecode(token);
+    if (decoded.exp === undefined) {
+      return null;
+    }
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  private startTokenExpirationTimer(token: string): void {
+    const expirationDate = this.getTokenExpirationDate(token);
+    if (expirationDate) {
+      const expiresIn = expirationDate.getTime() - Date.now();  // Calculate milliseconds until expiration
+      this.expirationTimeout = setTimeout(() => {
+        this.logout();  // Auto logout when the token expires
+        alert('Session expired. Please login again.');
+      }, expiresIn);
+    }
   }
 }

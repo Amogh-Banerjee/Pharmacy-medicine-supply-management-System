@@ -1,4 +1,5 @@
-﻿using AuthorizationAPI.Model;
+﻿using AuthorizationAPI.Exceptions;
+using AuthorizationAPI.Model;
 using AuthorizationAPI.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -27,12 +28,20 @@ namespace AuthorizationAPI.Controllers
 				return BadRequest(ModelState);
 			}
 
-			var user = await _userService.AuthenticateUserAsync(request.Username, request.Password);
-			if (user == null)
-				return Unauthorized();
+			try
+			{
+				var user = await _userService.AuthenticateUserAsync(request.Username, request.Password);
+				if (user == null)
+					return Unauthorized();
 
-			var token = await _userService.GenerateJwtTokenAsync(user);
-			return Ok(new LoginResponseDto { Token = token });
+				var token = await _userService.GenerateJwtTokenAsync(user);
+				return Ok(new LoginResponseDto { Token = token });
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, new { 
+					message = "An error occurred while processing your request.", detail = ex.Message });
+			}
 		}
 
 		[HttpPost("register")]
@@ -43,14 +52,26 @@ namespace AuthorizationAPI.Controllers
 				return BadRequest(ModelState);
 			}
 
-			var user = new User
+			try
 			{
-				Username = request.Username,
-				Password = request.Password 
-			};
+				var user = new User
+				{
+					Username = request.Username,
+					Password = request.Password
+				};
 
-			await _userService.CreateUserAsync(user);
-			return Ok();
+				await _userService.CreateUserAsync(user);
+				return Ok();
+			}
+			catch (UsernameTakenException ex)
+			{
+				return Conflict(new { message = ex.Message }); // HTTP 409 Conflict
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(500, new { message = "An error occurred", details = ex.Message }); // HTTP 500 Internal Server Error
+			}
+
 		}
 	}
 }

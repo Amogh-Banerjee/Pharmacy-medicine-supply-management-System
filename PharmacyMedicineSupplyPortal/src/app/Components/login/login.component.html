@@ -21,6 +21,13 @@
             </div>
 
             <button type="submit" class="btn btn-success btn-lg w-100" [disabled]="loginForm.invalid">Login</button>
+
+            <!-- Error Alert for Invalid Credentials -->
+            <div *ngIf="loginError" class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
+                {{ loginErrorMessage }}
+                <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+            </div>
+
         </form>
     </div>
 </div>

@@ -1,12 +1,89 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|d:\\wipro\\final project\\solutionauthorizationapi\\authorizationapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|solutionrelative:authorizationapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|d:\\wipro\\final project\\solutionauthorizationapi\\authorizationapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|solutionrelative:authorizationapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|d:\\wipro\\final project\\solutionauthorizationapi\\authorizationapi\\exceptions\\usernametakenexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|solutionrelative:authorizationapi\\exceptions\\usernametakenexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|d:\\wipro\\final project\\solutionauthorizationapi\\authorizationapi\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9EBA53E5-0FD3-46B2-8920-B004993D8E42}|AuthorizationAPI\\AuthorizationAPI.csproj|solutionrelative:authorizationapi\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "AuthorizationAPI\\Repository\\UserRepository.cs",
+              "ToolTip": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "AuthorizationAPI\\Repository\\UserRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T05:59:14.908Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsernameTakenException.cs",
+              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Exceptions\\UsernameTakenException.cs",
+              "RelativeDocumentMoniker": "AuthorizationAPI\\Exceptions\\UsernameTakenException.cs",
+              "ToolTip": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Exceptions\\UsernameTakenException.cs",
+              "RelativeToolTip": "AuthorizationAPI\\Exceptions\\UsernameTakenException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T06:18:40.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "AuthorizationAPI\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "AuthorizationAPI\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAwwCkAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T06:05:46.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "AuthorizationAPI\\Service\\UserService.cs",
+              "ToolTip": "D:\\Wipro\\Final Project\\SolutionAuthorizationAPI\\AuthorizationAPI\\Service\\UserService.cs",
+              "RelativeToolTip": "AuthorizationAPI\\Service\\UserService.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAIAwwCYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T05:56:28.093Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

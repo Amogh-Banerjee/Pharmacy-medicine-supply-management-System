@@ -9,7 +9,7 @@
           <small>Username is required and must be at least 3 characters.</small>
         </div>
       </div>
-      
+
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" id="password" formControlName="password" class="form-control form-control-lg" />
@@ -19,6 +19,18 @@
       </div>
 
       <button type="submit" class="btn btn-success btn-lg w-100" [disabled]="registerForm.invalid">Register</button>
+
+      <!-- Error Alert for Unsuccessful Registration -->
+      <div *ngIf="registerError" class="alert alert-danger alert-dismissible mt-3 fade show" role="alert">
+        {{ registerErrorMessage }}
+        <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+      </div>
+      <!-- Alert for Successful Registration -->
+      <div *ngIf="registerSuccess" class="alert alert-success alert-dismissible mt-3 fade show" role="alert">
+        {{ registerSuccessMessage }}
+        <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+      </div>
+
     </form>
   </div>
 </div>

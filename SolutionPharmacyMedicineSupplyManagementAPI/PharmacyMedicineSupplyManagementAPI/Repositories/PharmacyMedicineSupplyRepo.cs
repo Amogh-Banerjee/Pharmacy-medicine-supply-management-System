@@ -23,8 +23,24 @@ namespace PharmacyMedicineSupplyManagementAPI.Repositories
 			{
 				DetachMedicineStock(supply.Med);
 
-				_context.PharmacyMedicineSupplies.Add(supply);
-				_context.SaveChanges();
+				// Check if the PharmacyID and MedID combination already exists
+				var existingSupply = _context.PharmacyMedicineSupplies
+					.FirstOrDefault(s => s.PharmacyId == supply.PharmacyId && s.MedId == supply.MedId);
+
+				if (existingSupply != null)
+				{
+					// Update the existing record
+					existingSupply.SupplyCount = supply.SupplyCount;
+					_context.PharmacyMedicineSupplies.Update(existingSupply);
+				}
+				else
+				{
+					// Add a new record
+					_context.PharmacyMedicineSupplies.Add(supply);
+				}
+
+				// Save changes
+				_context.SaveChanges();				
 			}
 			catch (Exception ex)
 			{
@@ -43,10 +59,25 @@ namespace PharmacyMedicineSupplyManagementAPI.Repositories
 		{
 			try
 			{
-				_context.MedicineDemands.Add(demand);
+				// Check if the MedicineDemand record already exists
+				var existingDemand = _context.MedicineDemands
+					.FirstOrDefault(md => md.MedId == demand.MedId);
+
+				if (existingDemand != null)
+				{
+					// If the record exists, update the DemandCount
+					existingDemand.DemandCount = demand.DemandCount;
+					_context.MedicineDemands.Update(existingDemand);
+				}
+				else
+				{
+					// If the record doesn't exist, add a new one
+					_context.MedicineDemands.Add(demand);
+				}
+
 				_context.SaveChanges();
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				Console.WriteLine($"Error: {ex.Message}");
 				throw;

@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
+  loginError: boolean = false; // For showing the alert
+  loginErrorMessage: string = ''; // Holds the error message
+
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
@@ -28,10 +31,23 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.authService.loginEmit(response.token); // Emit authentication change
           this.router.navigate(['/dashboard']);
+          this.loginError = false; // Clear any previous errors
         },
-        error => console.log('Login error', error)
+        error => {
+          if (error.status === 401) {
+            this.loginError = true;
+            this.loginErrorMessage = 'Invalid credentials. Please try again.';
+          } else {
+            this.loginError = true;
+            this.loginErrorMessage = 'An error occurred during login. Please try again later.';
+          }
+        }
       );
     }
+  }
+
+  closeAlert() {
+    this.loginError = false;
   }
 
 }

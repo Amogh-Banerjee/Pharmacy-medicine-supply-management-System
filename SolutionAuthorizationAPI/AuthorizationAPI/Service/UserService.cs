@@ -1,4 +1,5 @@
-﻿using AuthorizationAPI.Model;
+﻿using AuthorizationAPI.Exceptions;
+using AuthorizationAPI.Model;
 using AuthorizationAPI.Repository;
 
 namespace AuthorizationAPI.Service
@@ -30,6 +31,14 @@ namespace AuthorizationAPI.Service
 
 		public async Task CreateUserAsync(User user)
 		{
+			// Check if a user with the same username already exists
+			var existingUser = await _userRepository.GetUserByUsernameAsync(user.Username);
+
+			if (existingUser != null)
+			{
+				throw new UsernameTakenException("Username is already taken.");
+			}
+
 			user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 			await _userRepository.CreateUserAsync(user);
 		}
