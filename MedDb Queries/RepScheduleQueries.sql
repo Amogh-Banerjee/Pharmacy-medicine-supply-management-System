@@ -1,0 +1,17 @@
+USE MedDb;
+
+CREATE TABLE RepSchedule(
+	SchID INT IDENTITY(1,1) PRIMARY KEY,
+	MedRepID INT REFERENCES MedicalRep(MedRepID) NOT NULL,
+	DoctorName VARCHAR(20) NOT NULL,
+	TreatingAilment VARCHAR(255) NOT NULL, 
+	Medicine VARCHAR(100) NOT NULL,
+	MeetingStartTime TIME DEFAULT '13:00:00' NOT NULL,
+	MeetingEndTime TIME DEFAULT '14:00:00' NOT NULL,
+	MeetingDate DATE NOT NULL,
+	DoctorContact VARCHAR(10) NOT NULL,
+);
+
+
+SELECT * FROM RepSchedule;
+
